@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura – Features in Detail</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root{--bg:#0A0A0A;--surface:#181818;--border:#252525;--text-primary:#F0F0F0;--text-secondary:#888888;--green:#3DDD84;--green-dim:rgba(61,221,132,0.12);--green-glow:rgba(61,221,132,0.15);}
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;max-width:100%;}
+        html{overflow-x:hidden;}
+        body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text-primary);line-height:1.6;overflow-x:hidden;width:100%;}
+        body::before{content:'';position:fixed;top:0;left:0;right:0;bottom:0;width:100%;height:100%;background-image:linear-gradient(rgba(61,221,132,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(61,221,132,0.04) 1px,transparent 1px);background-size:64px 64px;pointer-events:none;z-index:0;overflow:hidden;}
+        .container{max-width:1160px;width:100%;margin:0 auto;padding:0 24px;position:relative;z-index:1;}
+        header{border-bottom:1px solid var(--border);padding:20px 0;position:sticky;top:0;background:rgba(10,10,10,0.9);backdrop-filter:blur(12px);z-index:100;width:100%;}
+        header .inner{display:flex;justify-content:space-between;align-items:center;}
+        .logo{font-family:'DM Mono',monospace;font-size:22px;font-weight:500;letter-spacing:0;color:var(--text-primary);text-decoration:none;display:flex;align-items:center;gap:0;}
+        .logo span{color:var(--green);}
+        nav{display:flex;align-items:center;gap:28px;}
+        nav a{font-size:14px;color:var(--text-secondary);text-decoration:none;transition:color 0.2s;}
+        nav a:hover{color:var(--text-primary);}
+        .lang-switch{font-family:'DM Mono',monospace;font-size:12px;letter-spacing:2px;color:var(--text-secondary);text-decoration:none;border:1px solid var(--border);border-radius:6px;padding:5px 10px;transition:border-color 0.2s,color 0.2s;}
+        .lang-switch:hover{border-color:var(--green);color:var(--green);}
+        .btn-primary{background:var(--green);color:#0A0A0A;padding:10px 20px;border-radius:8px;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;transition:opacity 0.2s,transform 0.2s;text-decoration:none;display:inline-block;}
+        .btn-primary:hover{opacity:0.85;transform:scale(1.03);}
+        .btn-secondary{background:transparent;color:var(--text-primary);padding:10px 20px;border-radius:8px;border:1px solid var(--border);cursor:pointer;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;transition:border-color 0.2s,background 0.2s;text-decoration:none;display:inline-block;}
+        .btn-secondary:hover{border-color:var(--green);background:var(--green-dim);}
+        .section-label{font-family:'DM Mono',monospace;font-size:12px;color:var(--green);letter-spacing:3px;margin-bottom:16px;text-transform:uppercase;}
+        .hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--green-dim);border:1px solid rgba(61,221,132,0.25);border-radius:100px;padding:6px 16px;font-size:13px;color:var(--green);font-family:'DM Mono',monospace;letter-spacing:1px;margin-bottom:32px;}
+        .hero{text-align:center;padding:120px 0 100px;position:relative;overflow:hidden;}
+        .hero::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:600px;max-width:100vw;background:radial-gradient(circle,var(--green-glow) 0%,transparent 70%);pointer-events:none;}
+        .hero h1{font-size:60px;font-weight:700;line-height:1.15;margin-bottom:24px;letter-spacing:-1px;}
+        .hero h1 span{color:var(--green);}
+        .hero p{font-size:18px;color:var(--text-secondary);max-width:540px;margin:0 auto 48px;}
+        .hero-buttons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+        .hero-buttons .btn-primary,.hero-buttons .btn-secondary{padding:14px 32px;font-size:15px;}
+        .mission{padding:80px 0;border-top:1px solid var(--border);}
+        .mission-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+        .mission-text h2{font-size:38px;font-weight:700;margin-bottom:20px;letter-spacing:-0.5px;line-height:1.2;}
+        .mission-text p{font-size:16px;color:var(--text-secondary);line-height:1.8;margin-bottom:16px;}
+        .mission-text p strong{color:var(--text-primary);}
+        .mission-stats{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--border);border:1px solid var(--border);border-radius:16px;overflow:hidden;}
+        .stat{background:var(--surface);padding:32px;}
+        .stat-value{font-size:42px;font-weight:700;color:var(--green);font-family:'DM Mono',monospace;line-height:1;margin-bottom:8px;}
+        .stat-label{font-size:14px;color:var(--text-secondary);}
+        .stat-label strong{color:var(--green);font-weight:600;}
+        .section{padding:80px 0;border-top:1px solid var(--border);}
+        .section h2{font-size:42px;font-weight:700;margin-bottom:60px;letter-spacing:-0.5px;}
+        .features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border);border:1px solid var(--border);border-radius:16px;overflow:hidden;}
+        .feature-card{background:var(--surface);padding:36px 32px;transition:background 0.2s;}
+        .feature-card:hover{background:#1e1e1e;}
+        .feature-icon{width:44px;height:44px;background:var(--green-dim);border:1px solid rgba(61,221,132,0.2);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:20px;}
+        .feature-card h3{font-size:17px;font-weight:600;margin-bottom:10px;}
+        .feature-card p{font-size:14px;color:var(--text-secondary);line-height:1.6;}
+        .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+        .pricing-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:36px 28px;transition:border-color 0.2s;position:relative;}
+        .pricing-card:hover{border-color:rgba(61,221,132,0.3);}
+        .pricing-card.featured{border-color:var(--green);box-shadow:0 0 32px rgba(61,221,132,0.08);}
+        .featured-badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--green);color:#0A0A0A;font-size:11px;font-weight:700;padding:4px 14px;border-radius:100px;white-space:nowrap;letter-spacing:1px;}
+        .pricing-card h3{font-family:'DM Mono',monospace;font-size:13px;letter-spacing:3px;color:var(--text-secondary);text-transform:uppercase;margin-bottom:20px;}
+        .price{font-size:48px;font-weight:700;color:var(--text-primary);line-height:1;margin-bottom:6px;}
+        .price sup{font-size:20px;font-weight:500;vertical-align:super;}
+        .price-period{font-size:13px;color:var(--text-secondary);margin-bottom:28px;}
+        .pricing-divider{height:1px;background:var(--border);margin-bottom:24px;}
+        .feature-list{list-style:none;margin-bottom:32px;}
+        .feature-list li{font-size:13px;color:var(--text-secondary);padding:8px 0;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--border);}
+        .feature-list li:last-child{border-bottom:none;}
+        .feature-list li.included{color:var(--text-primary);}
+        .feature-list li.included::before{content:"✓";color:var(--green);font-weight:700;flex-shrink:0;}
+        .feature-list li.excluded::before{content:"×";color:var(--border);font-weight:700;flex-shrink:0;}
+        .lifetime-banner{margin-top:32px;background:linear-gradient(135deg,rgba(61,221,132,0.08) 0%,rgba(61,221,132,0.03) 100%);border:1px solid var(--green);border-radius:16px;padding:40px;display:flex;gap:48px;align-items:center;position:relative;overflow:hidden;}
+        .lifetime-banner::before{content:'';position:absolute;top:-60px;right:-60px;width:240px;height:240px;background:radial-gradient(circle,rgba(61,221,132,0.12) 0%,transparent 70%);pointer-events:none;}
+        .lifetime-tag{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--green);margin-bottom:12px;}
+        .lifetime-banner-left{flex:1;}
+        .lifetime-banner-left h3{font-size:28px;font-weight:700;margin-bottom:12px;letter-spacing:-0.5px;}
+        .lifetime-banner-left h3 span{color:var(--green);}
+        .lifetime-banner-left>p{font-size:15px;color:var(--text-secondary);line-height:1.7;margin-bottom:20px;max-width:560px;}
+        .lifetime-perks{list-style:none;display:flex;flex-wrap:wrap;gap:10px 24px;}
+        .lifetime-perks li{font-size:13px;color:var(--text-primary);}
+        .lifetime-banner-right{min-width:200px;text-align:center;}
+        .lifetime-price{font-size:52px;font-weight:700;color:var(--green);font-family:'DM Mono',monospace;line-height:1;margin-bottom:4px;}
+        .lifetime-price sup{font-size:22px;font-weight:500;vertical-align:super;}
+        .lifetime-price span{font-size:16px;font-weight:400;color:var(--text-secondary);font-family:'DM Sans',sans-serif;}
+        .lifetime-saved{font-size:13px;color:var(--text-secondary);margin-bottom:20px;text-decoration:line-through;}
+        .cta-section{padding:80px 0;border-top:1px solid var(--border);text-align:center;}
+        .cta-section h2{font-size:42px;font-weight:700;margin-bottom:16px;letter-spacing:-0.5px;}
+        .cta-section p{font-size:16px;color:var(--text-secondary);margin-bottom:40px;}
+        .or-hero{padding:100px 0 60px;border-bottom:1px solid var(--border);}
+        .or-hero h1{font-size:52px;font-weight:700;letter-spacing:-1px;line-height:1.15;margin-bottom:20px;}
+        .or-hero h1 span{color:var(--green);}
+        .or-hero p{font-size:18px;color:var(--text-secondary);max-width:600px;margin-bottom:36px;}
+        .or-section{padding:72px 0;border-top:1px solid var(--border);}
+        .or-section h2{font-size:32px;font-weight:700;margin-bottom:16px;letter-spacing:-0.5px;}
+        .or-section p{font-size:16px;color:var(--text-secondary);max-width:700px;line-height:1.8;margin-bottom:12px;}
+        .or-section p strong{color:var(--text-primary);}
+        .or-analogy{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--green);border-radius:12px;padding:24px 28px;margin:20px 0;font-size:15px;color:var(--text-secondary);line-height:1.7;}
+        .or-analogy strong{color:var(--text-primary);}
+        .info-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px;}
+        .info-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:28px;}
+        .info-card .icon{font-size:28px;margin-bottom:14px;display:block;}
+        .info-card h3{font-size:16px;font-weight:600;margin-bottom:8px;}
+        .info-card p{font-size:14px;color:var(--text-secondary);line-height:1.6;margin-bottom:0;}
+        .steps-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:32px;}
+        .step-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:28px;display:flex;gap:20px;align-items:flex-start;}
+        .step-number{width:36px;height:36px;min-width:36px;background:var(--green-dim);border:1px solid rgba(61,221,132,0.25);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:14px;font-weight:600;color:var(--green);}
+        .step-content h3{font-size:16px;font-weight:600;margin-bottom:6px;}
+        .step-content p{font-size:14px;color:var(--text-secondary);line-height:1.6;margin-bottom:0;}
+        .step-content a{color:var(--green);text-decoration:none;}
+        .or-cta{padding:80px 0;border-top:1px solid var(--border);text-align:center;}
+        .or-cta h2{font-size:36px;font-weight:700;margin-bottom:14px;letter-spacing:-0.5px;}
+        .or-cta p{font-size:16px;color:var(--text-secondary);margin-bottom:32px;max-width:500px;margin-left:auto;margin-right:auto;}
+        .waitlist-layout{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;padding:72px 0;}
+        .waitlist-form-box{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:40px;}
+        .wl-field{margin-bottom:20px;}
+        .wl-field label{display:block;font-size:13px;color:var(--text-secondary);margin-bottom:8px;font-weight:500;}
+        .wl-field input{width:100%;padding:12px 16px;background:var(--bg);border:1px solid var(--border);border-radius:8px;color:var(--text-primary);font-family:'DM Sans',sans-serif;font-size:15px;outline:none;transition:border-color 0.2s;}
+        .wl-field input:focus{border-color:var(--green);}
+        .wl-field input::placeholder{color:var(--text-secondary);}
+        .wl-plan{margin-bottom:24px;}
+        .wl-plan>label{display:block;font-size:13px;color:var(--text-secondary);margin-bottom:8px;font-weight:500;}
+        .wl-plan-options{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+        .wl-plan-option{display:flex;align-items:center;gap:8px;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:10px 14px;cursor:pointer;font-size:14px;transition:border-color 0.2s;}
+        .wl-plan-option:hover{border-color:rgba(61,221,132,0.4);}
+        .wl-plan-option input{width:auto;min-width:unset;}
+        .wl-plan-featured{border-color:rgba(61,221,132,0.35)!important;color:var(--green);}
+        .waitlist-summary{padding-top:4px;}
+        .wl-tier{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px 24px;margin-bottom:12px;}
+        .wl-tier-special{border-color:var(--green);background:linear-gradient(135deg,rgba(61,221,132,0.06) 0%,transparent 100%);}
+        .wl-tier-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;}
+        .wl-tier-name{font-weight:700;font-size:16px;}
+        .wl-tier-price{font-family:'DM Mono',monospace;font-size:14px;color:var(--text-secondary);}
+        footer{border-top:1px solid var(--border);padding:32px 0;}
+        footer .footer-inner{display:flex;flex-direction:column;align-items:center;gap:12px;}
+        footer .footer-top{display:flex;justify-content:space-between;align-items:center;width:100%;flex-wrap:wrap;gap:12px;}
+        footer .footer-links{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;}
+        footer p{font-size:13px;color:var(--text-secondary);}
+        footer a.footer-link{font-size:13px;color:var(--text-secondary);text-decoration:none;transition:color 0.2s;}
+        footer a.footer-link:hover{color:var(--green);}
+        @media(max-width:900px){.info-cards{grid-template-columns:1fr 1fr;}}
+        @media(max-width:768px){
+            .hero{padding:80px 0 60px;}
+            .hero h1{font-size:36px;letter-spacing:-0.5px;}
+            .hero p{font-size:16px;}
+            .features-grid{grid-template-columns:1fr;}
+            .pricing-grid{grid-template-columns:1fr;}
+            .steps-grid{grid-template-columns:1fr;}
+            .mission-inner{grid-template-columns:1fr;gap:40px;}
+            .mission-text h2{font-size:28px;}
+            .section h2{font-size:28px;}
+            .cta-section h2{font-size:28px;}
+            .or-hero h1{font-size:32px;}
+            .or-section h2{font-size:26px;}
+            .lifetime-banner{flex-direction:column;gap:32px;padding:28px 20px;}
+            .lifetime-price{font-size:42px;}
+            .waitlist-layout{grid-template-columns:1fr;padding:40px 0;}
+            .waitlist-form-box{padding:24px;}
+            .wl-plan-options{grid-template-columns:1fr;}
+            .info-cards{grid-template-columns:1fr;}
+            footer .footer-top{flex-direction:column;text-align:center;}
+        }
+
+        .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none;}
+        .hamburger span{display:block;width:24px;height:2px;background:var(--text-primary);border-radius:2px;transition:all 0.3s;}
+        .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+        .hamburger.open span:nth-child(2){opacity:0;}
+        .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+        .mobile-menu{display:none;position:fixed;top:65px;left:0;right:0;background:rgba(10,10,10,0.98);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:20px 24px;z-index:99;flex-direction:column;gap:4px;}
+        .mobile-menu.open{display:flex;}
+        .mobile-menu a{font-size:16px;color:var(--text-secondary);text-decoration:none;padding:12px 0;border-bottom:1px solid var(--border);transition:color 0.2s;}
+        .mobile-menu a:last-child{border-bottom:none;}
+        .mobile-menu a:hover{color:var(--green);}
+        .mobile-menu .btn-primary{margin-top:8px;text-align:center;padding:14px;}
+        .mobile-menu .lang-switch{border:none;padding:12px 0;letter-spacing:2px;}
+        @media(max-width:768px){
+            .hamburger{display:flex;}
+            nav a:not(.btn-primary):not(.lang-switch){display:none;}
+            nav .lang-switch{display:none;}
+            nav .btn-primary{display:none;}
+        }
+</style>
+</head>
+<body>
+<header><div class="container"><div class="inner">
+        <a href="index_en.html" class="logo">AU<span>R</span>A</a>
+        <nav>
+            <a href="index_en.html#mission">Mission</a>
+            <a href="features_en.html">Features</a>
+            <a href="index_en.html#pricing">Pricing</a>
+            <a href="openrouter_en.html">OpenRouter</a>
+            <a href="features.html" class="lang-switch">DE</a>
+            <a href="waitlist_en.html" class="btn-primary">Join Waitlist</a>
+        </nav>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div></div></header>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="index_en.html#mission">Mission</a>
+        <a href="features_en.html">Features</a>
+        <a href="index_en.html#pricing">Pricing</a>
+        <a href="openrouter_en.html">OpenRouter</a>
+        <a href="features.html" class="lang-switch">DE</a>
+        <a href="waitlist_en.html" class="btn-primary">Join Waitlist</a>
+    </div>
+<main>
+  <section class="or-hero"><div class="container">
+    <div class="hero-badge">✦ FEATURES IN DETAIL</div>
+    <h1>What <span>Aura</span> really does –<br>explained in depth.</h1>
+    <p>For the curious, power users, and everyone who wants to know what's under the hood.</p>
+  </div></section>
+  <section class="or-section"><div class="container"><div class="section-label">// Personas</div><h2>🎭 Personas & @mentions</h2>
+    <p>A persona is a predefined AI character with its own <strong>system prompt, tone and expertise</strong>. Invoke it via <strong>@mention</strong>.</p>
+    <p>Each persona has a separate context. <strong>@coach</strong> remembers your fitness goals, <strong>@developer</strong> knows your tech stack.</p>
+    <div class="or-analogy">💡 <strong>Technical:</strong> Personas are stored as separate system prompts and automatically embedded into the API request on @mention.</div>
+  </div></section>
+  <section class="or-section"><div class="container"><div class="section-label">// BYOK</div><h2>🔑 Bring Your Own Key (BYOK)</h2>
+    <p>Connect your own <strong>OpenRouter API Key</strong> to Aura. All AI requests run directly through your account – you pay exactly what you use.</p>
+    <div class="info-cards">
+      <div class="info-card"><span class="icon">🔐</span><h3>Encrypted storage</h3><p>AES-256 encrypted.</p></div>
+      <div class="info-card"><span class="icon">🔄</span><h3>Change anytime</h3><p>Replace in seconds from settings.</p></div>
+      <div class="info-card"><span class="icon">📊</span><h3>Cost transparency</h3><p>Full overview in OpenRouter dashboard.</p></div>
+    </div>
+  </div></section>
+  <section id="heartbeat" class="or-section"><div class="container"><div class="section-label">// Heartbeat Agent</div><h2>⚡ Heartbeat Agent</h2>
+    <p>The Heartbeat Agent is Aura's autonomous background process. It runs on a configurable schedule or event trigger – even when you're offline.</p>
+    <div class="or-analogy">💡 <strong>Technical:</strong> Cron-based scheduling on server level. On trigger, a full Aura context is built and delivered as a push notification.</div>
+
+    <div class="section-label" style="margin-top:32px;">// USE CASES – What the Agent does for you</div>
+    <div class="info-cards">
+      <div class="info-card"><span class="icon">📈</span><h3>Price Monitoring</h3><p>Monitors stock or crypto prices daily. The moment an asset hits your target price, Aura sends you a push notification – never miss an opportunity again.</p></div>
+      <div class="info-card"><span class="icon">📬</span><h3>API Event → Telegram</h3><p>When a webhook fires (new GitHub PR, Shopify order, system error), Aura instantly messages you via Telegram or email – no manual checking required.</p></div>
+      <div class="info-card"><span class="icon">🗓️</span><h3>Daily Briefing Agent</h3><p>Every morning at 7am, the agent summarizes your calendar, open tasks and relevant news – delivered as a notification to your phone.</p></div>
+      <div class="info-card"><span class="icon">🔁</span><h3>Workflow Automation</h3><p>Repetitive tasks like data sync, report generation or content posting run automatically on your schedule – without you needing to be there.</p></div>
+      <div class="info-card"><span class="icon">🌦️</span><h3>Weather & Travel Alerts</h3><p>Travelling tomorrow? The agent checks weather, train delays and notifies you 12 hours in advance – including what to pack.</p></div>
+      <div class="info-card"><span class="icon">🤖</span><h3>Custom Skills</h3><p>Define your own skills in plain language: "If my server goes down, call me." Aura understands natural language and turns it into reliable background processes.</p></div>
+    </div>
+  </div></section>
+  <section class="or-cta"><div class="container"><div class="section-label">// Ready?</div><h2>All features. One price.</h2>
+    <p>Start for free or secure the Early-Access Life-Time Deal now.</p>
+    <a href="waitlist_en.html" class="btn-primary">Join the Waitlist →</a>
+  </div></section>
+</main>
+<footer><div class="container"><div class="footer-inner">
+        <div class="footer-top">
+            <a href="index_en.html" class="logo">AU<span>R</span>A</a>
+            <a href="features.html" class="lang-switch">DE</a>
+        </div>
+        <p>© 2026 Aura Intelligence. Made with ♥ in Rellingen.</p>
+        <div class="footer-links">
+            <a href="impressum_en.html" class="footer-link">Imprint</a>
+            <a href="privacy.html" class="footer-link">Privacy Policy</a>
+        </div>
+    </div></div></footer>
+<script>
+const hbtn = document.getElementById('hamburger');
+const hmenu = document.getElementById('mobileMenu');
+
+function openMenu() {
+    hbtn.classList.add('open');
+    hmenu.classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
+function closeMenu() {
+    hbtn.classList.remove('open');
+    hmenu.classList.remove('open');
+    document.body.style.overflow = '';
+}
+
+hbtn.addEventListener('click', () => {
+    hmenu.classList.contains('open') ? closeMenu() : openMenu();
+});
+
+// Close on any link click
+hmenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+
+// Close on outside click
+document.addEventListener('click', (e) => {
+    if (hmenu.classList.contains('open') && !hmenu.contains(e.target) && !hbtn.contains(e.target)) {
+        closeMenu();
+    }
+});
+
+// Close on scroll
+window.addEventListener('scroll', () => {
+    if (hmenu.classList.contains('open')) closeMenu();
+}, { passive: true });
+</script>
+</body>
+</html>

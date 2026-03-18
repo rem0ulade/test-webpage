@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura – Imprint</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg:#0A0A0A;--surface:#181818;--border:#252525;
+            --text-primary:#F0F0F0;--text-secondary:#888888;
+            --green:#3DDD84;--green-dim:rgba(61,221,132,0.12);--green-glow:rgba(61,221,132,0.15);
+        }
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;max-width:100%;}
+        html{overflow-x:hidden;}
+        body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text-primary);line-height:1.6;overflow-x:hidden;width:100%;}
+        body::before{content:'';position:fixed;top:0;left:0;right:0;bottom:0;width:100%;height:100%;background-image:linear-gradient(rgba(61,221,132,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(61,221,132,0.04) 1px,transparent 1px);background-size:64px 64px;pointer-events:none;z-index:0;overflow:hidden;}
+        .container{max-width:860px;width:100%;margin:0 auto;padding:0 24px;position:relative;z-index:1;}
+        header{border-bottom:1px solid var(--border);padding:20px 0;position:sticky;top:0;background:rgba(10,10,10,0.9);backdrop-filter:blur(12px);z-index:100;width:100%;}
+        header .inner{display:flex;justify-content:space-between;align-items:center;max-width:1160px;margin:0 auto;padding:0 24px;}
+        .logo{font-family:'DM Mono',monospace;font-size:22px;font-weight:500;letter-spacing:6px;color:var(--text-primary);text-decoration:none;}
+        .logo span{color:var(--green);}
+        nav{display:flex;align-items:center;gap:28px;}
+        nav a{font-size:14px;color:var(--text-secondary);text-decoration:none;transition:color 0.2s;}
+        nav a:hover{color:var(--text-primary);}
+        .btn-primary{background:var(--green);color:#0A0A0A;padding:10px 20px;border-radius:8px;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;transition:opacity 0.2s;text-decoration:none;display:inline-block;}
+        .btn-primary:hover{opacity:0.85;}
+        .lang-switch{font-family:'DM Mono',monospace;font-size:12px;letter-spacing:2px;color:var(--text-secondary);text-decoration:none;border:1px solid var(--border);border-radius:6px;padding:5px 10px;transition:border-color 0.2s,color 0.2s;}
+        .lang-switch:hover{border-color:var(--green);color:var(--green);}
+        .section-label{font-family:'DM Mono',monospace;font-size:12px;color:var(--green);letter-spacing:3px;margin-bottom:16px;text-transform:uppercase;}
+        .page-hero{padding:80px 0 48px;border-bottom:1px solid var(--border);}
+        .page-hero h1{font-size:42px;font-weight:700;letter-spacing:-1px;line-height:1.2;margin-bottom:12px;}
+        .page-hero p{font-size:15px;color:var(--text-secondary);}
+        .legal-content{padding:56px 0 80px;}
+        .legal-content h2{font-size:20px;font-weight:700;margin:40px 0 12px;color:var(--text-primary);}
+        .legal-content h2:first-child{margin-top:0;}
+        .legal-content h3{font-size:16px;font-weight:600;margin:24px 0 8px;color:var(--text-primary);}
+        .legal-content p{font-size:15px;color:var(--text-secondary);line-height:1.8;margin-bottom:12px;}
+        .legal-content p strong{color:var(--text-primary);}
+        .legal-content a{color:var(--green);text-decoration:none;}
+        .legal-content a:hover{text-decoration:underline;}
+        .legal-content ul{margin:8px 0 16px 20px;}
+        .legal-content ul li{font-size:15px;color:var(--text-secondary);line-height:1.8;margin-bottom:4px;}
+        .legal-box{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:24px 28px;margin:16px 0;}
+        .legal-box p{margin-bottom:4px;}
+        footer{border-top:1px solid var(--border);padding:32px 0;}
+        footer .footer-inner{display:flex;flex-direction:column;align-items:center;gap:12px;}
+        footer .footer-top{display:flex;justify-content:space-between;align-items:center;width:100%;flex-wrap:wrap;gap:12px;}
+        footer .footer-links{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;}
+        footer p{font-size:13px;color:var(--text-secondary);}
+        footer a.footer-link{font-size:13px;color:var(--text-secondary);text-decoration:none;transition:color 0.2s;}
+        footer a.footer-link:hover{color:var(--green);}
+        @media(max-width:768px){
+            .page-hero h1{font-size:28px;}
+            nav a:not(.btn-primary):not(.lang-switch){display:none;}
+            footer .footer-top{flex-direction:column;text-align:center;}
+            .footer-links{justify-content:center;}
+        }
+</style>
+</head>
+<body>
+<header><div class="inner">
+        <a href="index_en.html" class="logo">AU<span>R</span>A</a>
+        <nav>
+            <a href="index_en.html">Home</a>
+            <a href="impressum.html" class="lang-switch">DE</a>
+            <a href="waitlist_en.html" class="btn-primary">Join Waitlist</a>
+        </nav>
+    </div></header>
+<main>
+  <section class="page-hero">
+    <div class="container">
+      <div class="section-label">// Legal</div>
+      <h1>Imprint</h1>
+      <p>Information according to § 5 TMG (German Telemedia Act)</p>
+    </div>
+  </section>
+  <section class="legal-content">
+    <div class="container">
+
+      <h2>Company Information</h2>
+      <div class="legal-box">
+        <p><strong>Aura Intelligence</strong></p>
+        <p>Owner: Jonathan Kokalj</p>
+        <p>Moorkampshöhe 5</p>
+        <p>25462 Rellingen</p>
+        <p>Germany</p>
+      </div>
+
+      <h2>Contact</h2>
+      <div class="legal-box">
+        <p><strong>Phone:</strong> <a href="tel:+4917661583811">+49 176 615 838 11</a></p>
+        <p><strong>Email:</strong> <a href="/cdn-cgi/l/email-protection#2a4c43444e53455f584b5f584b044b5a5a6a4d474b434604494547"><span class="__cf_email__" data-cfemail="ed8b8483899482989f8c989f8cc38c9d9dad8a808c8481c38e8280">[email&#160;protected]</span></a></p>
+        <p><strong>Website:</strong> <a href="https://findyouraura.de">findyouraura.de</a></p>
+      </div>
+
+      <h2>Responsible for Content</h2>
+      <p>Jonathan Kokalj, Moorkampshöhe 5, 25462 Rellingen, Germany</p>
+
+      <h2>Disclaimer</h2>
+      <h3>Liability for Content</h3>
+      <p>As a service provider, we are responsible for our own content on these pages in accordance with general laws pursuant to § 7 para. 1 TMG. However, according to §§ 8 to 10 TMG, we are not obligated to monitor transmitted or stored third-party information or to investigate circumstances that indicate illegal activity.</p>
+      <h3>Liability for Links</h3>
+      <p>Our website contains links to external third-party websites over whose content we have no influence. Therefore, we cannot accept any liability for this external content. The respective provider or operator of the linked pages is always responsible for their content.</p>
+      <h3>Copyright</h3>
+      <p>The content and works created by the site operators on these pages are subject to German copyright law. Reproduction, editing, distribution, and any kind of exploitation outside the limits of copyright law require the written consent of the respective author or creator.</p>
+
+    </div>
+  </section>
+</main>
+<footer><div class="container"><div class="footer-inner">
+        <div class="footer-top">
+            <a href="index_en.html" class="logo">AU<span>R</span>A</a>
+            <a href="impressum.html" class="lang-switch">DE</a>
+        </div>
+        <p>© 2026 Aura. Made with ♥ in Rellingen.</p>
+        <div class="footer-links">
+            <a href="impressum_en.html" class="footer
