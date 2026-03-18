@@ -108,6 +108,9 @@
         .step-content p{font-size:14px;color:var(--text-secondary);line-height:1.6;margin-bottom:0;}
         .step-content a{color:var(--green);text-decoration:none;}
         .or-cta{padding:80px 0;border-top:1px solid var(--border);text-align:center;}
+        .model-badge{display:inline-flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:8px 14px;font-size:13px;font-weight:500;transition:border-color 0.2s;}
+        .model-badge:hover{border-color:rgba(61,221,132,0.3);}
+        .model-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
         .or-cta h2{font-size:36px;font-weight:700;margin-bottom:14px;letter-spacing:-0.5px;}
         .or-cta p{font-size:16px;color:var(--text-secondary);margin-bottom:32px;max-width:500px;margin-left:auto;margin-right:auto;}
         .waitlist-layout{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;padding:72px 0;}
@@ -220,6 +223,28 @@
       <div class="info-card"><span class="icon">🔐</span><h3>Verschlüsselte Speicherung</h3><p>AES-256-verschlüsselt.</p></div>
       <div class="info-card"><span class="icon">🔄</span><h3>Jederzeit wechselbar</h3><p>In Sekunden austauschen.</p></div>
       <div class="info-card"><span class="icon">📊</span><h3>Kostentransparenz</h3><p>Volle Übersicht im OpenRouter Dashboard.</p></div>
+    </div>
+  </div></section>
+
+  <section class="or-section"><div class="container">
+    <div class="section-label">// Unterstützte Modelle</div>
+    <h2>🤖 Alle Modelle. Eine App.</h2>
+    <p>Via OpenRouter hast du Zugriff auf die leistungsstärksten KI-Modelle der Welt – wähle das beste Modell für jeden Task und wechsle jederzeit ohne Aufwand.</p>
+    <div class="or-analogy">💡 <strong>Tipp:</strong> Nutze günstige Modelle (Qwen, DeepSeek) für Alltags-Tasks und schalte auf Claude Opus oder GPT-4o um, wenn es auf maximale Qualität ankommt.</div>
+    <div style="margin-top:28px;display:flex;gap:10px;flex-wrap:wrap;">
+      <div class="model-badge"><div class="model-dot" style="background:#c96bff;"></div>Anthropic Claude</div>
+      <div class="model-badge"><div class="model-dot" style="background:#74aa9c;"></div>OpenAI GPT-4o</div>
+      <div class="model-badge"><div class="model-dot" style="background:#0064e1;"></div>Meta Llama 3</div>
+      <div class="model-badge"><div class="model-dot" style="background:#00c4cc;"></div>Google Gemini</div>
+      <div class="model-badge"><div class="model-dot" style="background:#ff6b35;"></div>Mistral</div>
+      <div class="model-badge"><div class="model-dot" style="background:#4a90d9;"></div>DeepSeek</div>
+      <div class="model-badge"><div class="model-dot" style="background:#f5a623;"></div>Qwen (Alibaba)</div>
+      <div class="model-badge"><div class="model-dot" style="background:#00b4ab;"></div>MiniMax</div>
+      <div class="model-badge"><div class="model-dot" style="background:#e8417b;"></div>Kimi (Moonshot)</div>
+      <div class="model-badge"><div class="model-dot" style="background:#76b900;"></div>Nvidia</div>
+      <div class="model-badge"><div class="model-dot" style="background:#9b59b6;"></div>Cohere</div>
+      <div class="model-badge"><div class="model-dot" style="background:#e74c3c;"></div>Perplexity</div>
+      <div class="model-badge" style="border-style:dashed;color:var(--text-secondary);">+ 100 weitere via OpenRouter</div>
     </div>
   </div></section>
   <section id="heartbeat" class="or-section"><div class="container"><div class="section-label">// Heartbeat Agent</div><h2>⚡ Heartbeat Agent</h2>
