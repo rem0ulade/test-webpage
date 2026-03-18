@@ -232,6 +232,22 @@
         .toggle-pill.yearly::after{transform:translateX(22px);}
         .toggle-save-badge{font-size:11px;font-weight:700;letter-spacing:.5px;color:#0A0A0A;background:var(--green);padding:3px 9px;border-radius:100px;margin-left:2px;}
 
+
+        /* ── Message Highlight ── */
+        .msg-highlight{background:var(--green-dim);border:1px solid rgba(61,221,132,0.25);border-radius:10px;padding:12px 16px;margin:12px 0 20px;display:flex;align-items:center;gap:12px;}
+        .msg-highlight-val{font-family:'DM Mono',monospace;font-size:22px;font-weight:700;color:var(--green);white-space:nowrap;}
+        .msg-highlight-label{font-size:13px;color:var(--text-secondary);line-height:1.4;}
+        .msg-highlight-label strong{color:var(--text-primary);}
+        /* ── Model Universe Grid ── */
+        .model-universe{margin-top:40px;}
+        .model-universe-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px;}
+        .model-category{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px;}
+        .model-category-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--green);text-transform:uppercase;margin-bottom:12px;}
+        .model-tags{display:flex;flex-wrap:wrap;gap:6px;}
+        .model-tag{font-family:'DM Mono',monospace;font-size:11px;font-weight:500;background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:4px 10px;color:var(--text-primary);letter-spacing:0.5px;transition:border-color 0.2s,color 0.2s;}
+        .model-tag:hover{border-color:rgba(61,221,132,0.4);color:var(--green);}
+        .model-universe-footer{margin-top:14px;font-size:13px;color:var(--text-secondary);font-family:'DM Mono',monospace;letter-spacing:1px;}
+        @media(max-width:768px){.model-universe-grid{grid-template-columns:1fr;}}
         </style>
 </head>
 <body>
@@ -290,23 +306,31 @@
       <div class="feature-card"><div class="feature-icon">🧠</div><h3>Smart Memory</h3><p>Aura learns about you – your tech stack, your goals, your style. Save 20+ minutes daily by never having to explain context again.</p></div>
       <div class="feature-card"><div class="feature-icon">⚡</div><h3>Heartbeat Agent</h3><p>Your AI agent works 24/7 – even while you sleep. Monitors events, sends alerts, executes workflows. <a href="features_en.html#heartbeat" style="color:var(--green);">See examples →</a></p></div>
     </div>
-    <!-- ── Supported Models ── -->
-    <div style="margin-top:40px;">
-      <div class="section-label">// Supported Models</div>
-      <p style="font-size:15px;color:var(--text-secondary);margin-bottom:20px;">Choose freely between the world's best models – all via <strong style="color:var(--text-primary);">OpenRouter</strong> in one app.</p>
-      <div class="models-badges" style="display:flex;gap:10px;flex-wrap:wrap;">
-        <div class="model-badge"><div class="model-dot" style="background:#c96bff;"></div>Anthropic Claude</div>
-        <div class="model-badge"><div class="model-dot" style="background:#74aa9c;"></div>OpenAI GPT-4o</div>
-        <div class="model-badge"><div class="model-dot" style="background:#0064e1;"></div>Meta Llama 3</div>
-        <div class="model-badge"><div class="model-dot" style="background:#00c4cc;"></div>Google Gemini</div>
-        <div class="model-badge"><div class="model-dot" style="background:#ff6b35;"></div>Mistral</div>
-        <div class="model-badge"><div class="model-dot" style="background:#4a90d9;"></div>DeepSeek</div>
-        <div class="model-badge"><div class="model-dot" style="background:#f5a623;"></div>Qwen (Alibaba)</div>
-        <div class="model-badge"><div class="model-dot" style="background:#00b4ab;"></div>MiniMax</div>
-        <div class="model-badge"><div class="model-dot" style="background:#e8417b;"></div>Kimi (Moonshot)</div>
-        <div class="model-badge"><div class="model-dot" style="background:#76b900;"></div>Nvidia</div>
-        <div class="model-badge" style="border-style:dashed;color:var(--text-secondary);">+ 100 more →</div>
+        <!-- ── Model Universe ── -->
+    <div class="model-universe">
+      <div class="section-label">// Model Universe</div>
+      <p style="font-size:15px;color:var(--text-secondary);margin-bottom:16px;">Choose freely between the world's best models – all via <strong style="color:var(--text-primary);">OpenRouter</strong> in one app.</p>
+      <div class="model-universe-grid">
+        <div class="model-category">
+          <div class="model-category-label">🚀 Frontier</div>
+          <div class="model-tags">
+            <span class="model-tag">GPT-5 Nano</span><span class="model-tag">GPT-4o</span><span class="model-tag">Claude 3.5</span><span class="model-tag">Gemini 2.0</span>
+          </div>
+        </div>
+        <div class="model-category">
+          <div class="model-category-label">🔓 Open Source</div>
+          <div class="model-tags">
+            <span class="model-tag">Llama 3.3</span><span class="model-tag">DeepSeek-V3</span><span class="model-tag">Mistral Large</span><span class="model-tag">Qwen 2.5</span>
+          </div>
+        </div>
+        <div class="model-category">
+          <div class="model-category-label">🎯 Specialists</div>
+          <div class="model-tags">
+            <span class="model-tag">Perplexity Sonar</span><span class="model-tag">Nvidia Nemotron</span><span class="model-tag">Kimi-v1.5</span><span class="model-tag">MiniMax</span>
+          </div>
+        </div>
       </div>
+      <p class="model-universe-footer">+ 150 more models via OpenRouter connectivity</p>
     </div>
   </div></section>
   <section id="pricing" class="section"><div class="container">
@@ -321,37 +345,64 @@
       <div class="fomo-bar-left"><div class="fomo-dot"></div><span style="color:var(--text-secondary);"><strong style="color:var(--text-primary);">Early Access</strong> ends in</span><div class="fomo-timer"><div class="fomo-unit"><span class="fomo-val" id="fomoD">--</span><span class="fomo-lab">DAYS</span></div><span class="fomo-sep">:</span><div class="fomo-unit"><span class="fomo-val" id="fomoH">--</span><span class="fomo-lab">HRS</span></div><span class="fomo-sep">:</span><div class="fomo-unit"><span class="fomo-val" id="fomoM">--</span><span class="fomo-lab">MIN</span></div><span class="fomo-sep">:</span><div class="fomo-unit"><span class="fomo-val" id="fomoS">--</span><span class="fomo-lab">SEC</span></div></div></div>
       <div class="seats-badge">🔥 ONLY 47 SPOTS LEFT</div>
     </div>
-    <div class="pricing-grid">
+        <div class="pricing-grid">
       <div class="pricing-card">
-        <h3>Free</h3><div class="price">€<span>0</span></div>
-        <div class="price-period">Free forever</div><div class="pricing-divider"></div>
+        <h3>Free</h3>
+        <div class="price">€<span>0</span></div>
+        <div class="price-period">Free forever</div>
+        <div class="msg-highlight">
+          <div class="msg-highlight-val">30</div>
+          <div class="msg-highlight-label"><strong>messages / day</strong><br>then BYOK</div>
+        </div>
+        <div class="pricing-divider"></div>
         <ul class="feature-list">
-          <li class="included">30 messages / day</li><li class="included">1 Persona</li>
-          <li class="included">Web Search & Weather</li><li class="included">Own API Key (BYOK)</li>
-          <li class="excluded">API Connectors</li><li class="excluded">Skills</li><li class="excluded">Heartbeat Agent</li>
+          <li class="included">Web Search included</li>
+          <li class="included">1 Persona</li>
+          <li class="included">2 API Connectors (Web Search, Weather)</li>
+          <li class="included">🔒 BYOK – AES-256 encrypted</li>
+          <li class="excluded">Heartbeat Agent</li>
+          <li class="excluded">Skills</li>
         </ul>
         <a href="waitlist_en.html" class="btn-secondary" style="display:block;text-align:center;">Get started free</a>
       </div>
       <div class="pricing-card">
-        <h3>Pro</h3><div class="price"><sup>€</sup><span id="priceProVal">7.99</span></div>
-        <div class="price-period" id="periodPro">per month · 14-day free trial</div><div style="margin-top:-6px;margin-bottom:10px;"><div id="totalPro" style="display:none;font-size:12px;color:var(--text-secondary);margin-top:4px;">= €80 billed per year</div>
-<span id="badgePro" class="toggle-save-badge" style="display:none;font-size:11px;">15% OFF</span></div><div class="pricing-divider"></div>
+        <h3>Pro</h3>
+        <div class="price"><sup>€</sup><span id="priceProVal">7.99</span></div>
+        <div class="price-period" id="periodPro">per month · 14-day free trial</div>
+        <div style="margin-top:-6px;margin-bottom:10px;"><div id="totalPro" style="display:none;font-size:12px;color:var(--text-secondary);margin-top:4px;">= €80 billed per year</div><span id="badgePro" class="toggle-save-badge" style="display:none;font-size:11px;">15% OFF</span></div>
+        <div class="msg-highlight">
+          <div class="msg-highlight-val">1,000</div>
+          <div class="msg-highlight-label"><strong>messages / month</strong><br>then BYOK</div>
+        </div>
+        <div class="pricing-divider"></div>
         <ul class="feature-list">
-          <li class="included">Unlimited messages</li><li class="included">5 Personas</li>
-          <li class="included">Web Search & Weather</li><li class="included">Own API Key (BYOK)</li>
-          <li class="included">3 API Connectors</li><li class="included">3 Skills</li><li class="excluded">Heartbeat Agent</li>
+          <li class="included">5 Personas</li>
+          <li class="included">API Connectors</li>
+          <li class="included">Web Search Flat</li>
+          <li class="included">🔒 BYOK – AES-256 encrypted</li>
+          <li class="excluded">Heartbeat Agent 24/7</li>
+          <li class="excluded">Unlimited Personas</li>
         </ul>
         <a href="waitlist_en.html" class="btn-secondary" style="display:block;text-align:center;">Try Pro</a>
       </div>
       <div class="pricing-card featured">
         <div class="featured-badge">RECOMMENDED</div>
-        <h3>Max</h3><div class="price"><sup>€</sup><span id="priceMaxVal">12.99</span></div>
-        <div class="price-period" id="periodMax">per month · 14-day free trial</div><div style="margin-top:-6px;margin-bottom:10px;"><div id="totalMax" style="display:none;font-size:12px;color:var(--text-secondary);margin-top:4px;">= €125 billed per year</div>
-<span id="badgeMax" class="toggle-save-badge" style="display:none;font-size:11px;">20% OFF</span></div><div class="pricing-divider"></div>
+        <h3>Max</h3>
+        <div class="price"><sup>€</sup><span id="priceMaxVal">12.99</span></div>
+        <div class="price-period" id="periodMax">per month · 14-day free trial</div>
+        <div style="margin-top:-6px;margin-bottom:10px;"><div id="totalMax" style="display:none;font-size:12px;color:var(--text-secondary);margin-top:4px;">= €125 billed per year</div><span id="badgeMax" class="toggle-save-badge" style="display:none;font-size:11px;">20% OFF</span></div>
+        <div class="msg-highlight">
+          <div class="msg-highlight-val">2,500</div>
+          <div class="msg-highlight-label"><strong>messages / month</strong><br>then BYOK</div>
+        </div>
+        <div class="pricing-divider"></div>
         <ul class="feature-list">
-          <li class="included">Everything in Pro</li><li class="included">Unlimited Personas</li>
-          <li class="included">Unlimited Connectors</li><li class="included">Unlimited Skills</li>
-          <li class="included">Heartbeat Agent (24/7)</li><li class="included">Priority Support</li>
+          <li class="included">Unlimited Personas</li>
+          <li class="included">Unlimited Connectors & Skills</li>
+          <li class="included">Heartbeat Agent (24/7)</li>
+          <li class="included">Web Search Flat</li>
+          <li class="included">🔒 BYOK – AES-256 encrypted</li>
+          <li class="included">Priority Support</li>
           <li class="included">Early access to new features</li>
         </ul>
         <a href="waitlist_en.html" class="btn-primary" style="display:block;text-align:center;">Try Max</a>
@@ -360,17 +411,21 @@
     <div class="lifetime-banner">
       <div class="lifetime-banner-left">
         <div class="lifetime-tag">⚡ EARLY ACCESS ONLY · PRICE RISES ON JULY 1, 2026</div>
-        <h3>Life-Time Deal – <span>one-time €99.99</span></h3>
-        <p>Lock in all Max features permanently – one purchase, no subscription, never pay again. <strong style="color:var(--green);">Then €199.99.</strong> Act now.</p>
+        <h3>Life-Time Deal – <span>one-time €149.99</span></h3>
+        <p>All Max features forever – one purchase, no subscription, never pay again. <strong style="color:var(--green);">Then €199.99.</strong> Act now.</p>
         <ul class="lifetime-perks">
-          <li>✓ Everything in Max – forever</li><li>✓ All future features included</li>
-          <li>✓ Exclusive Lifetime Badge</li><li>✓ No price increases – ever</li>
+          <li>✓ 2,500 messages/month via Aura-Key</li>
+          <li>✓ Then unlimited via your own BYOK</li>
+          <li>✓ All Max features – forever</li>
+          <li>✓ All future features included</li>
+          <li>✓ 🔒 BYOK – AES-256 encrypted</li>
+          <li>✓ No price increases – ever</li>
           <li>✓ Save over €900 vs. 5 years of Max</li>
         </ul>
       </div>
       <div class="lifetime-banner-right">
         <div style="font-size:11px;font-family:'DM Mono',monospace;color:var(--text-secondary);text-decoration:line-through;margin-bottom:2px;">€199.99</div>
-        <div class="lifetime-price"><sup>€</sup>99.99<span style="font-size:18px;font-weight:500;color:var(--text-secondary);font-family:'DM Sans',sans-serif;margin-left:6px;">once</span></div>
+        <div class="lifetime-price"><sup>€</sup>149.99<span style="font-size:18px;font-weight:500;color:var(--text-secondary);font-family:'DM Sans',sans-serif;margin-left:6px;">once</span></div>
         <div class="lifetime-saved" id="lifetimeSaved">instead of €155.88 / year (Max)</div>
         <a href="waitlist_en.html" class="btn-primary" style="width:100%;text-align:center;display:block;padding:14px 0;font-size:15px;">Secure Lifetime →</a>
         <p style="font-size:12px;color:var(--text-secondary);margin-top:10px;text-align:center;">🔒 Early Access only · Limited spots</p>
@@ -494,7 +549,7 @@ window.addEventListener('scroll', () => {
     document.getElementById('badgeMax').style.display   = yearly ? 'inline' : 'none';
     // update lifetime saved line based on yearly max price
     var el = document.getElementById('lifetimeSaved');
-    if(el) el.textContent = yearly ? 'instead of €125 / year (Max yearly)' : 'instead of €155.88 / year (Max)';
+    if(el) el.textContent = yearly ? 'instead of €155.88 / year (Max)' : 'instead of €180 / year (Max ann.)';
   }
   pill.addEventListener('click', function(){ update(!pill.classList.contains('yearly')); });
   update(false);

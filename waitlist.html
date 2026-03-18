@@ -189,6 +189,22 @@
         .toggle-pill.yearly::after{transform:translateX(22px);}
         .toggle-save-badge{font-size:11px;font-weight:700;letter-spacing:.5px;color:#0A0A0A;background:var(--green);padding:3px 9px;border-radius:100px;}
 
+
+        /* ── Message Highlight ── */
+        .msg-highlight{background:var(--green-dim);border:1px solid rgba(61,221,132,0.25);border-radius:10px;padding:12px 16px;margin:12px 0 20px;display:flex;align-items:center;gap:12px;}
+        .msg-highlight-val{font-family:'DM Mono',monospace;font-size:22px;font-weight:700;color:var(--green);white-space:nowrap;}
+        .msg-highlight-label{font-size:13px;color:var(--text-secondary);line-height:1.4;}
+        .msg-highlight-label strong{color:var(--text-primary);}
+        /* ── Model Universe Grid ── */
+        .model-universe{margin-top:40px;}
+        .model-universe-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px;}
+        .model-category{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px;}
+        .model-category-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--green);text-transform:uppercase;margin-bottom:12px;}
+        .model-tags{display:flex;flex-wrap:wrap;gap:6px;}
+        .model-tag{font-family:'DM Mono',monospace;font-size:11px;font-weight:500;background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:4px 10px;color:var(--text-primary);letter-spacing:0.5px;transition:border-color 0.2s,color 0.2s;}
+        .model-tag:hover{border-color:rgba(61,221,132,0.4);color:var(--green);}
+        .model-universe-footer{margin-top:14px;font-size:13px;color:var(--text-secondary);font-family:'DM Mono',monospace;letter-spacing:1px;}
+        @media(max-width:768px){.model-universe-grid{grid-template-columns:1fr;}}
         </style>
 </head>
 <body>
@@ -233,7 +249,7 @@
             <label class="wl-plan-option"><input type="radio" name="plan" value="free" checked> <span>Free</span></label>
             <label class="wl-plan-option"><input type="radio" name="plan" value="pro"> <span>Pro €7,99/mo</span></label>
             <label class="wl-plan-option"><input type="radio" name="plan" value="max"> <span>Max €12,99/mo</span></label>
-            <label class="wl-plan-option wl-plan-featured"><input type="radio" name="plan" value="lifetime"> <span>⚡ Life-Time €99,99 einmalig</span></label>
+            <label class="wl-plan-option wl-plan-featured"><input type="radio" name="plan" value="lifetime"> <span>⚡ Life-Time €149,99 einmalig</span></label>
           </div>
         </div>
         <button type="submit" class="btn-primary" style="width:100%;padding:14px;font-size:16px;margin-top:8px;">Jetzt auf Waitlist eintragen →</button>
@@ -246,7 +262,7 @@
         <a href="index.html" class="btn-secondary" style="margin-top:24px;display:inline-block;">← Zurück zur Startseite</a>
       </div>
     </div>
-    <div class="waitlist-summary">
+        <div class="waitlist-summary">
       <div class="section-label">// Was dich erwartet</div>
       <h2 style="font-size:22px;margin-bottom:16px;">Deine Vorteile auf einen Blick</h2>
       <div class="billing-toggle-wrap">
@@ -254,20 +270,41 @@
         <div class="toggle-pill" id="wlBillingToggle"></div>
         <span id="wlLblYearly">Jährlich <span class="toggle-save-badge">BIS ZU 20% SPAREN</span></span>
       </div>
-      <div class="wl-tier"><div class="wl-tier-head"><span class="wl-tier-name">Free</span><span class="wl-tier-price">€0</span></div>
-        <ul class="feature-list"><li class="included">30 Nachrichten / Tag</li><li class="included">1 Persona</li><li class="included">Web Search & Wetter</li><li class="included">Eigener API Key (BYOK)</li></ul>
+      <div class="wl-tier">
+        <div class="wl-tier-head"><span class="wl-tier-name">Free</span><span class="wl-tier-price">€0</span></div>
+        <div class="msg-highlight" style="margin:8px 0 10px;">
+          <div class="msg-highlight-val" style="font-size:18px;">30/Tag</div>
+          <div class="msg-highlight-label">Nachrichten · danach BYOK</div>
+        </div>
+        <ul class="feature-list"><li class="included">Web Search & 1 Persona</li><li class="included">2 Konnektoren (Web Search, Wetter)</li><li class="included">🔒 BYOK – AES-256</li></ul>
       </div>
-      <div class="wl-tier"><div class="wl-tier-head"><span class="wl-tier-name">Pro</span><span class="wl-tier-price" id="wlPricePro">€7,99/mo</span></div><div id="wlTotalPro" style="display:none;font-size:11px;color:var(--text-secondary);margin-top:2px;">= €80 / Jahr gesamt</div>
-        <ul class="feature-list"><li class="included">Unlimitierte Nachrichten</li><li class="included">5 Personas + 3 Konnektoren</li><li class="included">3 Skills</li></ul>
+      <div class="wl-tier">
+        <div class="wl-tier-head"><span class="wl-tier-name">Pro</span><span class="wl-tier-price" id="wlPricePro">€7,99/mo</span></div>
+        <div id="wlTotalPro" style="display:none;font-size:11px;color:var(--text-secondary);margin-top:2px;">= €80 / Jahr gesamt</div>
+        <div class="msg-highlight" style="margin:8px 0 10px;">
+          <div class="msg-highlight-val" style="font-size:18px;">1.000/mo</div>
+          <div class="msg-highlight-label">Nachrichten · danach BYOK</div>
+        </div>
+        <ul class="feature-list"><li class="included">5 Personas + API Konnektoren</li><li class="included">Web Search Flat</li><li class="included">🔒 BYOK – AES-256</li></ul>
       </div>
-      <div class="wl-tier"><div class="wl-tier-head"><span class="wl-tier-name">Max</span><span class="wl-tier-price" id="wlPriceMax">€12,99/mo</span></div><div id="wlTotalMax" style="display:none;font-size:11px;color:var(--text-secondary);margin-top:2px;">= €125 / Jahr gesamt</div>
-        <ul class="feature-list"><li class="included">Alles unbegrenzt</li><li class="included">Heartbeat Agent (24/7)</li><li class="included">Priority Support</li></ul>
+      <div class="wl-tier">
+        <div class="wl-tier-head"><span class="wl-tier-name">Max</span><span class="wl-tier-price" id="wlPriceMax">€12,99/mo</span></div>
+        <div id="wlTotalMax" style="display:none;font-size:11px;color:var(--text-secondary);margin-top:2px;">= €125 / Jahr gesamt</div>
+        <div class="msg-highlight" style="margin:8px 0 10px;">
+          <div class="msg-highlight-val" style="font-size:18px;">2.500/mo</div>
+          <div class="msg-highlight-label">Nachrichten · danach BYOK</div>
+        </div>
+        <ul class="feature-list"><li class="included">Unbegrenzte Personas & Skills</li><li class="included">Heartbeat Agent (24/7)</li><li class="included">🔒 BYOK – AES-256</li></ul>
       </div>
       <p id="wlYearlyNote" style="display:none;font-size:12px;color:var(--text-secondary);margin-bottom:12px;">* pro Monat, jährlich abgerechnet</p>
       <div class="wl-tier wl-tier-special">
-        <div class="lifetime-tag" style="margin-bottom:8px;">⚡ SPECIAL OFFER · NUR EARLY ACCESS</div>
-        <div class="wl-tier-head"><span class="wl-tier-name" style="color:var(--green);">Life-Time</span><span class="wl-tier-price" style="color:var(--green);">€99,99 einmalig</span></div>
-        <ul class="feature-list"><li class="included">Alles aus Max – für immer</li><li class="included">Alle künftigen Features</li><li class="included">Exklusives Lifetime Badge</li><li class="included">Keine Preiserhöhungen – nie</li></ul>
+        <div class="lifetime-tag" style="margin-bottom:8px;">⚡ EARLY ACCESS ONLY · PREIS STEIGT 01.07.2026</div>
+        <div class="wl-tier-head"><span class="wl-tier-name" style="color:var(--green);">Life-Time</span><span class="wl-tier-price" style="color:var(--green);">€149,99 einmalig</span></div>
+        <div class="msg-highlight" style="margin:8px 0 10px;">
+          <div class="msg-highlight-val" style="font-size:18px;">2.500/mo</div>
+          <div class="msg-highlight-label">Nachrichten/Monat via Aura-Key · danach BYOK</div>
+        </div>
+        <ul class="feature-list"><li class="included">Alle Max-Features – für immer</li><li class="included">Alle künftigen Features</li><li class="included">🔒 BYOK – AES-256 · nie wieder zahlen</li></ul>
       </div>
     </div>
   </div></div>
