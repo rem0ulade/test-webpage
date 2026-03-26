@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aura – AI Dashboard with Custom AI Agents & OpenRouter Interface</title>
-    <meta name="description" content="Aura is your personal AI dashboard: Custom AI Agents, Personas via @mention, OpenRouter Interface for Claude, GPT-4 & Llama. Save 5+ hours per week.">
+    <title>Aura – Proactive AI Agent with Custom AI Agents & Customizable Interface</title>
+    <meta name="description" content="Aura is your personal proactive AI agent: Custom AI Agents, Personas via @mention, customizable interface for Claude, GPT-4 & Llama. Save 10+ hours per week.">
     <link rel="icon" type="image/png" href="favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
@@ -70,20 +70,6 @@
         .feature-list li.included{color:var(--text-primary);}
         .feature-list li.included::before{content:"✓";color:var(--green);font-weight:700;flex-shrink:0;}
         .feature-list li.excluded::before{content:"×";color:var(--border);font-weight:700;flex-shrink:0;}
-        .lifetime-banner{margin-top:32px;background:linear-gradient(135deg,rgba(61,221,132,0.08) 0%,rgba(61,221,132,0.03) 100%);border:1px solid var(--green);border-radius:16px;padding:40px;display:flex;gap:48px;align-items:center;position:relative;overflow:hidden;}
-        .lifetime-banner::before{content:'';position:absolute;top:-60px;right:-60px;width:240px;height:240px;background:radial-gradient(circle,rgba(61,221,132,0.12) 0%,transparent 70%);pointer-events:none;}
-        .lifetime-tag{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--green);margin-bottom:12px;}
-        .lifetime-banner-left{flex:1;}
-        .lifetime-banner-left h3{font-size:28px;font-weight:700;margin-bottom:12px;letter-spacing:-0.5px;}
-        .lifetime-banner-left h3 span{color:var(--green);}
-        .lifetime-banner-left>p{font-size:15px;color:var(--text-secondary);line-height:1.7;margin-bottom:20px;max-width:560px;}
-        .lifetime-perks{list-style:none;display:flex;flex-wrap:wrap;gap:10px 24px;}
-        .lifetime-perks li{font-size:13px;color:var(--text-primary);}
-        .lifetime-banner-right{min-width:200px;text-align:center;}
-        .lifetime-price{font-size:52px;font-weight:700;color:var(--green);font-family:'DM Mono',monospace;line-height:1;margin-bottom:4px;}
-        .lifetime-price sup{font-size:22px;font-weight:500;vertical-align:super;}
-        .lifetime-price span{font-size:16px;font-weight:400;color:var(--text-secondary);font-family:'DM Sans',sans-serif;}
-        .lifetime-saved{font-size:13px;color:var(--text-secondary);margin-bottom:20px;text-decoration:line-through;}
         .cta-section{padding:80px 0;border-top:1px solid var(--border);text-align:center;}
         .cta-section h2{font-size:42px;font-weight:700;margin-bottom:16px;letter-spacing:-0.5px;}
         .cta-section p{font-size:16px;color:var(--text-secondary);margin-bottom:40px;}
@@ -152,8 +138,6 @@
             .cta-section h2{font-size:28px;}
             .or-hero h1{font-size:32px;}
             .or-section h2{font-size:26px;}
-            .lifetime-banner{flex-direction:column;gap:32px;padding:28px 20px;}
-            .lifetime-price{font-size:42px;}
             .waitlist-layout{grid-template-columns:1fr;padding:40px 0;}
             .waitlist-form-box{padding:24px;}
             .wl-plan-options{grid-template-columns:1fr;}
@@ -181,7 +165,7 @@
         .mobile-menu .lang-switch{border:none;padding:12px 0;letter-spacing:2px;}
         @media(max-width:768px){
             .hamburger{display:flex;}
-            nav a:not(.btn-primary):not(.lang-switch){display:none;}
+            nav a:not(.btn-primary):not(.lang-switch):not(.btn-login){display:none;}
             nav .lang-switch{display:none;}
             nav .btn-primary{display:none;}
         }
@@ -248,6 +232,10 @@
         .model-tag:hover{border-color:rgba(61,221,132,0.4);color:var(--green);}
         .model-universe-footer{margin-top:14px;font-size:13px;color:var(--text-secondary);font-family:'DM Mono',monospace;letter-spacing:1px;}
         @media(max-width:768px){.model-universe-grid{grid-template-columns:1fr;}}
+        
+        .btn-login{font-size:14px;color:var(--text-secondary);text-decoration:none;border:1px solid var(--border);border-radius:8px;padding:8px 16px;transition:border-color 0.2s,color 0.2s;}
+        .btn-login:hover{border-color:var(--green);color:var(--green);}
+        .nav-avatar{width:34px;height:34px;border-radius:50%;background:var(--green-dim);border:1.5px solid var(--green);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:var(--green);text-decoration:none;font-family:'DM Mono',monospace;cursor:pointer;}
         </style>
 </head>
 <body>
@@ -257,8 +245,9 @@
             <a href="index_en.html#mission">Mission</a>
             <a href="features_en.html">Features</a>
             <a href="index_en.html#pricing">Pricing</a>
-            <a href="openrouter_en.html">OpenRouter</a>
+            <a href="byok_en.html">BYOK</a>
             <a href="index.html" class="lang-switch">DE</a>
+            <a href="login_en.html" class="btn-login" id="navLoginBtn">Sign In</a>
             <a href="waitlist_en.html" class="btn-primary">Join Waitlist</a>
         </nav>
         <button class="hamburger" id="hamburger" aria-label="Menu">
@@ -269,7 +258,8 @@
         <a href="index_en.html#mission">Mission</a>
         <a href="features_en.html">Features</a>
         <a href="index_en.html#pricing">Pricing</a>
-        <a href="openrouter_en.html">OpenRouter</a>
+        <a href="byok_en.html">BYOK</a>
+        <a href="login_en.html">Sign In</a>
         <a href="index.html" class="lang-switch">DE</a>
         <a href="waitlist_en.html" class="btn-primary">Join Waitlist</a>
     </div>
@@ -277,7 +267,7 @@
   <section class="hero"><div class="container">
     <div class="hero-badge">✦ NOW IN BETA</div>
     <h1>The smartest assistant<br>you'll ever <span>have.</span></h1>
-    <p>Your personal <strong style="color:var(--text-primary);">AI dashboard</strong> with Custom AI Agents, Personas via @mention and OpenRouter Interface – save 5+ hours per week.</p>
+    <p>Your personal <strong style="color:var(--text-primary);">proactive AI Agent</strong> with Custom AI Agents, Personas via @mention and customizable interface – save 10+ hours per week.</p>
     <div class="hero-buttons"><a href="waitlist_en.html" class="btn-primary">Join the Waitlist</a><a href="#features" class="btn-secondary">Explore Features</a></div>
   </div></section>
 
@@ -367,9 +357,9 @@
       </div>
       <div class="pricing-card">
         <h3>Pro</h3>
-        <div class="price"><sup>€</sup><span id="priceProVal">7.99</span></div>
+        <div class="price"><sup>€</sup><span id="priceProVal">8.99</span></div>
         <div class="price-period" id="periodPro">per month · 14-day free trial</div>
-        <div style="margin-top:-6px;margin-bottom:10px;"><div id="totalPro" style="display:none;font-size:12px;color:var(--text-secondary);margin-top:4px;">= €80 billed per year</div><span id="badgePro" class="toggle-save-badge" style="display:none;font-size:11px;">15% OFF</span></div>
+        <div style="margin-top:-6px;margin-bottom:10px;"><div id="totalPro" style="display:none;font-size:12px;color:var(--text-secondary);margin-top:4px;">= €108 billed per year</div><span id="badgePro" class="toggle-save-badge" style="display:none;font-size:11px;">15% OFF</span></div>
         <div class="msg-highlight">
           <div class="msg-highlight-val">1,000</div>
           <div class="msg-highlight-label"><strong>messages / month</strong><br>then BYOK</div>
@@ -388,9 +378,9 @@
       <div class="pricing-card featured">
         <div class="featured-badge">RECOMMENDED</div>
         <h3>Max</h3>
-        <div class="price"><sup>€</sup><span id="priceMaxVal">12.99</span></div>
+        <div class="price"><sup>€</sup><span id="priceMaxVal">18.99</span></div>
         <div class="price-period" id="periodMax">per month · 14-day free trial</div>
-        <div style="margin-top:-6px;margin-bottom:10px;"><div id="totalMax" style="display:none;font-size:12px;color:var(--text-secondary);margin-top:4px;">= €125 billed per year</div><span id="badgeMax" class="toggle-save-badge" style="display:none;font-size:11px;">20% OFF</span></div>
+        <div style="margin-top:-6px;margin-bottom:10px;"><div id="totalMax" style="display:none;font-size:12px;color:var(--text-secondary);margin-top:4px;">= €227 billed per year</div><span id="badgeMax" class="toggle-save-badge" style="display:none;font-size:11px;">20% OFF</span></div>
         <div class="msg-highlight">
           <div class="msg-highlight-val">2,500</div>
           <div class="msg-highlight-label"><strong>messages / month</strong><br>then BYOK</div>
@@ -407,31 +397,7 @@
         </ul>
         <a href="waitlist_en.html" class="btn-primary" style="display:block;text-align:center;">Try Max</a>
       </div>
-    </div>
-    <div class="lifetime-banner">
-      <div class="lifetime-banner-left">
-        <div class="lifetime-tag">⚡ EARLY ACCESS ONLY · PRICE RISES ON JULY 1, 2026</div>
-        <h3>Life-Time Deal – <span>one-time €149.99</span></h3>
-        <p>All Max features forever – one purchase, no subscription, never pay again. <strong style="color:var(--green);">Then €199.99.</strong> Act now.</p>
-        <ul class="lifetime-perks">
-          <li>✓ 2,500 messages/month via Aura-Key</li>
-          <li>✓ Then unlimited via your own BYOK</li>
-          <li>✓ All Max features – forever</li>
-          <li>✓ All future features included</li>
-          <li>✓ 🔒 BYOK – AES-256 encrypted</li>
-          <li>✓ No price increases – ever</li>
-          <li>✓ Save over €900 vs. 5 years of Max</li>
-        </ul>
-      </div>
-      <div class="lifetime-banner-right">
-        <div style="font-size:11px;font-family:'DM Mono',monospace;color:var(--text-secondary);text-decoration:line-through;margin-bottom:2px;">€199.99</div>
-        <div class="lifetime-price"><sup>€</sup>149.99<span style="font-size:18px;font-weight:500;color:var(--text-secondary);font-family:'DM Sans',sans-serif;margin-left:6px;">once</span></div>
-        <div class="lifetime-saved" id="lifetimeSaved">instead of €155.88 / year (Max)</div>
-        <a href="waitlist_en.html" class="btn-primary" style="width:100%;text-align:center;display:block;padding:14px 0;font-size:15px;">Secure Lifetime →</a>
-        <p style="font-size:12px;color:var(--text-secondary);margin-top:10px;text-align:center;">🔒 Early Access only · Limited spots</p>
-      </div>
-    </div>
-  </div></section>
+    </div></section>
   <section class="cta-section"><div class="container">
     <div class="section-label">// Early Access</div>
     <h2>Be there when Aura launches.</h2>
@@ -533,7 +499,7 @@ window.addEventListener('scroll', () => {
   var lblMonthly = document.getElementById('lblMonthly');
   var lblYearly  = document.getElementById('lblYearly');
   // prices [monthly, yearly]
-  var prices = { pro: [7.99, 6.67], max: [12.99, 10.42] };
+  var prices = { pro: [8.99, 7.49], max: [18.99, 15.83] };
   function fmt(n){ return n.toFixed(2); }
   function update(yearly){
     pill.classList.toggle('yearly', yearly);
@@ -547,12 +513,23 @@ window.addEventListener('scroll', () => {
     document.getElementById('totalPro').style.display  = yearly ? 'block'  : 'none';
     document.getElementById('totalMax').style.display  = yearly ? 'block'  : 'none';
     document.getElementById('badgeMax').style.display   = yearly ? 'inline' : 'none';
-    // update lifetime saved line based on yearly max price
-    var el = document.getElementById('lifetimeSaved');
     if(el) el.textContent = yearly ? 'instead of €155.88 / year (Max)' : 'instead of €180 / year (Max ann.)';
   }
   pill.addEventListener('click', function(){ update(!pill.classList.contains('yearly')); });
   update(false);
+})();
+</script>
+
+<script>
+(function(){
+  var user=null;try{user=JSON.parse(localStorage.getItem('aura_user'));}catch(e){}
+  var btn=document.getElementById('navLoginBtn');
+  if(btn&&user&&user.email){
+    var i=user.name?user.name.split(' ').map(function(n){return n[0];}).join('').toUpperCase().slice(0,2):user.email[0].toUpperCase();
+    var a=document.createElement('a');
+    a.href='profile_en.html';a.className='nav-avatar';a.title=user.name||user.email;a.textContent=i;
+    btn.parentNode.replaceChild(a,btn);
+  }
 })();
 </script>
 

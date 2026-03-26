@@ -53,11 +53,15 @@
         footer a.footer-link:hover{color:var(--green);}
         @media(max-width:768px){
             .page-hero h1{font-size:28px;}
-            nav a:not(.btn-primary):not(.lang-switch){display:none;}
+            nav a:not(.btn-primary):not(.lang-switch):not(.btn-login){display:none;}
             footer .footer-top{flex-direction:column;text-align:center;}
             .footer-links{justify-content:center;}
         }
-</style>
+
+        .btn-login{font-size:14px;color:var(--text-secondary);text-decoration:none;border:1px solid var(--border);border-radius:8px;padding:8px 16px;transition:border-color 0.2s,color 0.2s;}
+        .btn-login:hover{border-color:var(--green);color:var(--green);}
+        .nav-avatar{width:34px;height:34px;border-radius:50%;background:var(--green-dim);border:1.5px solid var(--green);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:var(--green);text-decoration:none;font-family:'DM Mono',monospace;cursor:pointer;}
+        </style>
 </head>
 <body>
 <header><div class="inner">
@@ -65,6 +69,7 @@
         <nav>
             <a href="index.html">Startseite</a>
             <a href="impressum_en.html" class="lang-switch">EN</a>
+            <a href="login.html" class="btn-login" id="navLoginBtn">Anmelden</a>
             <a href="waitlist.html" class="btn-primary">Waitlist beitreten</a>
         </nav>
     </div></header>

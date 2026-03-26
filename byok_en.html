@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aura – Early Access Waitlist</title>
+    <title>Aura – BYOK: Bring Your Own Key</title>
     <link rel="icon" type="image/png" href="favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
@@ -69,6 +69,20 @@
         .feature-list li.included{color:var(--text-primary);}
         .feature-list li.included::before{content:"✓";color:var(--green);font-weight:700;flex-shrink:0;}
         .feature-list li.excluded::before{content:"×";color:var(--border);font-weight:700;flex-shrink:0;}
+        .lifetime-banner{margin-top:32px;background:linear-gradient(135deg,rgba(61,221,132,0.08) 0%,rgba(61,221,132,0.03) 100%);border:1px solid var(--green);border-radius:16px;padding:40px;display:flex;gap:48px;align-items:center;position:relative;overflow:hidden;}
+        .lifetime-banner::before{content:'';position:absolute;top:-60px;right:-60px;width:240px;height:240px;background:radial-gradient(circle,rgba(61,221,132,0.12) 0%,transparent 70%);pointer-events:none;}
+        .lifetime-tag{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--green);margin-bottom:12px;}
+        .lifetime-banner-left{flex:1;}
+        .lifetime-banner-left h3{font-size:28px;font-weight:700;margin-bottom:12px;letter-spacing:-0.5px;}
+        .lifetime-banner-left h3 span{color:var(--green);}
+        .lifetime-banner-left>p{font-size:15px;color:var(--text-secondary);line-height:1.7;margin-bottom:20px;max-width:560px;}
+        .lifetime-perks{list-style:none;display:flex;flex-wrap:wrap;gap:10px 24px;}
+        .lifetime-perks li{font-size:13px;color:var(--text-primary);}
+        .lifetime-banner-right{min-width:200px;text-align:center;}
+        .lifetime-price{font-size:52px;font-weight:700;color:var(--green);font-family:'DM Mono',monospace;line-height:1;margin-bottom:4px;}
+        .lifetime-price sup{font-size:22px;font-weight:500;vertical-align:super;}
+        .lifetime-price span{font-size:16px;font-weight:400;color:var(--text-secondary);font-family:'DM Sans',sans-serif;}
+        .lifetime-saved{font-size:13px;color:var(--text-secondary);margin-bottom:20px;text-decoration:line-through;}
         .cta-section{padding:80px 0;border-top:1px solid var(--border);text-align:center;}
         .cta-section h2{font-size:42px;font-weight:700;margin-bottom:16px;letter-spacing:-0.5px;}
         .cta-section p{font-size:16px;color:var(--text-secondary);margin-bottom:40px;}
@@ -137,6 +151,8 @@
             .cta-section h2{font-size:28px;}
             .or-hero h1{font-size:32px;}
             .or-section h2{font-size:26px;}
+            .lifetime-banner{flex-direction:column;gap:32px;padding:28px 20px;}
+            .lifetime-price{font-size:42px;}
             .waitlist-layout{grid-template-columns:1fr;padding:40px 0;}
             .waitlist-form-box{padding:24px;}
             .wl-plan-options{grid-template-columns:1fr;}
@@ -163,33 +179,6 @@
             nav .btn-primary{display:none;}
         }
 
-        /* ── Billing Toggle (Waitlist) ── */
-        .billing-toggle-wrap{display:flex;align-items:center;gap:14px;margin-bottom:20px;}
-        .billing-toggle-wrap span{font-size:13px;color:var(--text-secondary);}
-        .billing-toggle-wrap span.active{color:var(--text-primary);font-weight:600;}
-        .toggle-pill{position:relative;width:48px;height:26px;background:var(--border);border-radius:100px;cursor:pointer;transition:background 0.25s;flex-shrink:0;}
-        .toggle-pill.yearly{background:var(--green);}
-        .toggle-pill::after{content:'';position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:transform 0.25s;}
-        .toggle-pill.yearly::after{transform:translateX(22px);}
-        .toggle-save-badge{font-size:11px;font-weight:700;letter-spacing:.5px;color:#0A0A0A;background:var(--green);padding:3px 9px;border-radius:100px;}
-
-
-        /* ── Message Highlight ── */
-        .msg-highlight{background:var(--green-dim);border:1px solid rgba(61,221,132,0.25);border-radius:10px;padding:12px 16px;margin:12px 0 20px;display:flex;align-items:center;gap:12px;}
-        .msg-highlight-val{font-family:'DM Mono',monospace;font-size:22px;font-weight:700;color:var(--green);white-space:nowrap;}
-        .msg-highlight-label{font-size:13px;color:var(--text-secondary);line-height:1.4;}
-        .msg-highlight-label strong{color:var(--text-primary);}
-        /* ── Model Universe Grid ── */
-        .model-universe{margin-top:40px;}
-        .model-universe-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px;}
-        .model-category{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px;}
-        .model-category-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--green);text-transform:uppercase;margin-bottom:12px;}
-        .model-tags{display:flex;flex-wrap:wrap;gap:6px;}
-        .model-tag{font-family:'DM Mono',monospace;font-size:11px;font-weight:500;background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:4px 10px;color:var(--text-primary);letter-spacing:0.5px;transition:border-color 0.2s,color 0.2s;}
-        .model-tag:hover{border-color:rgba(61,221,132,0.4);color:var(--green);}
-        .model-universe-footer{margin-top:14px;font-size:13px;color:var(--text-secondary);font-family:'DM Mono',monospace;letter-spacing:1px;}
-        @media(max-width:768px){.model-universe-grid{grid-template-columns:1fr;}}
-        
         .btn-login{font-size:14px;color:var(--text-secondary);text-decoration:none;border:1px solid var(--border);border-radius:8px;padding:8px 16px;transition:border-color 0.2s,color 0.2s;}
         .btn-login:hover{border-color:var(--green);color:var(--green);}
         .nav-avatar{width:34px;height:34px;border-radius:50%;background:var(--green-dim);border:1.5px solid var(--green);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:var(--green);text-decoration:none;font-family:'DM Mono',monospace;cursor:pointer;}
@@ -197,113 +186,84 @@
 </head>
 <body>
 <header><div class="container"><div class="inner">
-        <a href="index.html" class="logo">AU<span>R</span>A</a>
+        <a href="index_en.html" class="logo">AU<span>R</span>A</a>
         <nav>
-            <a href="index.html#mission">Mission</a>
-            <a href="features.html">Features</a>
-            <a href="index.html#pricing">Pricing</a>
-            <a href="byok.html">BYOK</a>
-            <a href="waitlist_en.html" class="lang-switch">EN</a>
-            <a href="login.html" class="btn-login" id="navLoginBtn">Anmelden</a>
-            <a href="waitlist.html" class="btn-primary">Waitlist beitreten</a>
+            <a href="index_en.html#mission">Mission</a>
+            <a href="features_en.html">Features</a>
+            <a href="index_en.html#pricing">Pricing</a>
+            <a href="byok_en.html">BYOK</a>
+            <a href="byok.html" class="lang-switch">DE</a>
+            <a href="login_en.html" class="btn-login" id="navLoginBtn">Sign In</a>
+            <a href="waitlist_en.html" class="btn-primary">Join Waitlist</a>
         </nav>
         <button class="hamburger" id="hamburger" aria-label="Menu">
             <span></span><span></span><span></span>
         </button>
     </div></div></header>
     <div class="mobile-menu" id="mobileMenu">
-        <a href="index.html#mission">Mission</a>
-        <a href="features.html">Features</a>
-        <a href="index.html#pricing">Pricing</a>
-        <a href="byok.html">BYOK</a>
-        <a href="login.html">Anmelden</a>
-        <a href="waitlist_en.html" class="lang-switch">EN</a>
-        <a href="waitlist.html" class="btn-primary">Waitlist beitreten</a>
+        <a href="index_en.html#mission">Mission</a>
+        <a href="features_en.html">Features</a>
+        <a href="index_en.html#pricing">Pricing</a>
+        <a href="byok_en.html">BYOK</a>
+        <a href="login_en.html">Sign In</a>
+        <a href="byok.html" class="lang-switch">DE</a>
+        <a href="waitlist_en.html" class="btn-primary">Join Waitlist</a>
     </div>
 <main>
-  <section class="or-hero" style="text-align:center;"><div class="container">
-    <div class="hero-badge">✦ EARLY ACCESS</div>
-    <h1 style="font-size:52px;">Sichere dir deinen<br><span>Early Access.</span></h1>
-    <p style="margin:0 auto 16px;max-width:560px;">Trag dich jetzt ein und sichere dir 3 Monate zum Preis von 2.</p>
+  <section class="or-hero"><div class="container">
+    <div class="hero-badge">✦ BYOK GUIDE</div>
+    <h1>BYOK – <span>Bring Your Own Key</span>:<br>Use your own AI API in Aura.</h1>
+    <p>Connect any AI provider directly to Aura with your own API key. No tech degree needed.</p>
+    <a href="#steps" class="btn-primary">Jump to step-by-step guide →</a>
   </div></section>
-  <div class="container"><div class="waitlist-layout">
-    <div class="waitlist-form-box">
-      <div class="section-label">// Auf die Liste</div>
-      <h2 style="font-size:26px;margin-bottom:24px;">Jetzt eintragen</h2>
-      <form id="wl-form" onsubmit="handleWaitlist(event)">
-        <div class="wl-field"><label>Dein Name</label><input type="text" placeholder="Max Mustermann" required></div>
-        <div class="wl-field"><label>E-Mail Adresse</label><input type="email" placeholder="deine@email.de" required></div>
-        <div class="wl-plan">
-          <label>Ich interessiere mich für …</label>
-          <div class="wl-plan-options">
-            <label class="wl-plan-option"><input type="radio" name="plan" value="free" checked> <span>Free</span></label>
-            <label class="wl-plan-option"><input type="radio" name="plan" value="pro"> <span>Pro €8,99/mo</span></label>
-            <label class="wl-plan-option"><input type="radio" name="plan" value="max"> <span>Max €18,99/mo</span></label>
-          </div>
-        </div>
-        <button type="submit" class="btn-primary" style="width:100%;padding:14px;font-size:16px;margin-top:8px;">Jetzt auf Waitlist eintragen →</button>
-        <p style="font-size:12px;color:var(--text-secondary);margin-top:12px;text-align:center;">Kein Spam. Kein Abo. Nur Updates zu Aura.</p>
-      </form>
-      <div id="wl-success" style="display:none;text-align:center;padding:40px 0;">
-        <div style="font-size:48px;margin-bottom:16px;">🎉</div>
-        <h3 style="font-size:22px;margin-bottom:8px;">Du bist dabei!</h3>
-        <p style="color:var(--text-secondary);">Wir melden uns, sobald Aura startet. Check dein Postfach.</p>
-        <a href="index.html" class="btn-secondary" style="margin-top:24px;display:inline-block;">← Zurück zur Startseite</a>
-      </div>
+  <section class="or-section"><div class="container">
+    <div class="section-label">// What is BYOK?</div>
+    <h2>Your own API key – full control, zero overhead.</h2>
+    <p>BYOK (Bring Your Own Key) means you connect Aura directly to an AI provider of your choice using your own API key. You only pay for what you actually use – without consuming your monthly Aura messages.</p>
+    <p>BYOK is an <strong>optional alternative</strong> in Aura: on the Free plan you get 30 free messages per day. If you need more, or want specific models, simply activate your own key.</p>
+    <div class="or-analogy">💡 <strong>Simply put:</strong> BYOK is like using your own SIM card in someone else's phone – you use the app, but pay the provider directly.</div>
+    <div class="info-cards">
+      <div class="info-card"><span class="icon">💸</span><h3>Pay only what you use</h3><p>No fixed subscription with the provider. Start with just a few euros.</p></div>
+      <div class="info-card"><span class="icon">🤖</span><h3>All major models</h3><p>GPT-4o, Claude, Gemini, Llama, Mistral & more – you choose.</p></div>
+      <div class="info-card"><span class="icon">🔒</span><h3>AES-256 encrypted</h3><p>Your key is stored securely and can be changed at any time.</p></div>
     </div>
-        <div class="waitlist-summary">
-      <div class="section-label">// Was dich erwartet</div>
-      <h2 style="font-size:22px;margin-bottom:16px;">Deine Vorteile auf einen Blick</h2>
-      <div class="billing-toggle-wrap">
-        <span id="wlLblMonthly" class="active">Monatlich</span>
-        <div class="toggle-pill" id="wlBillingToggle"></div>
-        <span id="wlLblYearly">Jährlich <span class="toggle-save-badge">BIS ZU 20% SPAREN</span></span>
-      </div>
-      <div class="wl-tier">
-        <div class="wl-tier-head"><span class="wl-tier-name">Free</span><span class="wl-tier-price">€0</span></div>
-        <div class="msg-highlight" style="margin:8px 0 10px;">
-          <div class="msg-highlight-val" style="font-size:18px;">30/Tag</div>
-          <div class="msg-highlight-label">Nachrichten · danach BYOK</div>
-        </div>
-        <ul class="feature-list"><li class="included">Web Search & 1 Persona</li><li class="included">2 Konnektoren (Web Search, Wetter)</li><li class="included">🔒 BYOK – AES-256</li></ul>
-      </div>
-      <div class="wl-tier">
-        <div class="wl-tier-head"><span class="wl-tier-name">Pro</span><span class="wl-tier-price" id="wlPricePro">€8,99/mo</span></div>
-        <div id="wlTotalPro" style="display:none;font-size:11px;color:var(--text-secondary);margin-top:2px;">= €80 / Jahr gesamt</div>
-        <div class="msg-highlight" style="margin:8px 0 10px;">
-          <div class="msg-highlight-val" style="font-size:18px;">1.000/mo</div>
-          <div class="msg-highlight-label">Nachrichten · danach BYOK</div>
-        </div>
-        <ul class="feature-list"><li class="included">5 Personas + API Konnektoren</li><li class="included">Web Search Flat</li><li class="included">🔒 BYOK – AES-256</li></ul>
-      </div>
-      <div class="wl-tier">
-        <div class="wl-tier-head"><span class="wl-tier-name">Max</span><span class="wl-tier-price" id="wlPriceMax">€18,99/mo</span></div>
-        <div id="wlTotalMax" style="display:none;font-size:11px;color:var(--text-secondary);margin-top:2px;">= €125 / Jahr gesamt</div>
-        <div class="msg-highlight" style="margin:8px 0 10px;">
-          <div class="msg-highlight-val" style="font-size:18px;">2.500/mo</div>
-          <div class="msg-highlight-label">Nachrichten · danach BYOK</div>
-        </div>
-        <ul class="feature-list"><li class="included">Unbegrenzte Personas & Skills</li><li class="included">Heartbeat Agent (24/7)</li><li class="included">🔒 BYOK – AES-256</li></ul>
-      </div>
-      <p id="wlYearlyNote" style="display:none;font-size:12px;color:var(--text-secondary);margin-bottom:12px;">* pro Monat, jährlich abgerechnet</p></div></div>
+  </div></section>
+
+  <section class="or-section"><div class="container">
+    <div class="section-label">// Supported Providers</div>
+    <h2>Which providers work with BYOK?</h2>
+    <p>You can use direct API keys from major providers – or use a single <strong>OpenRouter</strong> key to access <strong>400+ models</strong> cost-effectively in one app.</p>
+    <div class="info-cards">
+      <div class="info-card"><span class="icon">🚀</span><h3>Direct Providers</h3><p><strong>OpenAI</strong> (GPT-4o, o3), <strong>Anthropic</strong> (Claude), <strong>Google</strong> (Gemini), <strong>Mistral</strong>, <strong>xAI</strong> (Grok) and more – one key per provider.</p></div>
+      <div class="info-card"><span class="icon">⭐</span><h3>OpenRouter – the all-rounder</h3><p>A single key for <strong>400+ models</strong>: GPT-4o, Claude, Llama, DeepSeek, Qwen & more – often cheaper than going direct. Especially recommended if you want flexibility.</p></div>
+      <div class="info-card"><span class="icon">🔓</span><h3>Open Source Models</h3><p><strong>Llama 3.3</strong>, <strong>DeepSeek-V3</strong>, <strong>Mistral Large</strong>, <strong>Qwen 2.5</strong> and many more – usually much cheaper than proprietary models.</p></div>
+    </div>
+    <div class="or-analogy">⭐ <strong>Our tip:</strong> Start with <strong>OpenRouter</strong> – one account, one key, instant access to all models. Top up from €5, no monthly fees.</div>
+  </div></section>
+  <section id="steps" class="or-section"><div class="container"><div class="section-label">// Step by step</div><h2>Set up your API key – in under 5 minutes.</h2>
+    <div class="steps-grid">
+      <div class="step-card"><div class="step-number">01</div><div class="step-content"><h3>Create account</h3><p>Go to <a href="https://openrouter.ai" target="_blank">openrouter.ai</a> → <strong>"Sign Up"</strong>.</p></div></div>
+      <div class="step-card"><div class="step-number">02</div><div class="step-content"><h3>Add credits</h3><p>Click <strong>"Credits"</strong> and top up – e.g. <strong>€5</strong>.</p></div></div>
+      <div class="step-card"><div class="step-number">03</div><div class="step-content"><h3>Create API Key</h3><p>Go to <a href="https://openrouter.ai/settings/keys" target="_blank">Settings → Keys</a> → <strong>"Create Key"</strong>.</p></div></div>
+      <div class="step-card"><div class="step-number">04</div><div class="step-content"><h3>Copy & paste</h3><p>Copy immediately – shown <strong>only once</strong>. Paste in Aura settings. 🎉</p></div></div>
+    </div>
+  </div></section>
+  <section class="or-cta"><div class="container"><div class="section-label">// Ready?</div><h2>Start with Aura & your own key today.</h2>
+    <a href="waitlist_en.html" class="btn-primary">Join the Waitlist →</a>
+  </div></section>
 </main>
 <footer><div class="container"><div class="footer-inner">
         <div class="footer-top">
-            <a href="index.html" class="logo">AU<span>R</span>A</a>
-            <a href="waitlist_en.html" class="lang-switch">EN</a>
+            <a href="index_en.html" class="logo">AU<span>R</span>A</a>
+            <a href="byok.html" class="lang-switch">DE</a>
         </div>
         <p>© 2026 Aura Intelligence. Made with ♥ in Rellingen.</p>
         <div class="footer-links">
-            <a href="impressum.html" class="footer-link">Impressum</a>
-            <a href="datenschutz.html" class="footer-link">Datenschutz</a>
+            <a href="impressum_en.html" class="footer-link">Imprint</a>
+            <a href="privacy.html" class="footer-link">Privacy Policy</a>
         </div>
     </div></div></footer>
 <script>
-function handleWaitlist(e){
-    e.preventDefault();
-    document.getElementById('wl-form').style.display='none';
-    document.getElementById('wl-success').style.display='block';
-}
 const hbtn = document.getElementById('hamburger');
 const hmenu = document.getElementById('mobileMenu');
 
@@ -322,51 +282,21 @@ hbtn.addEventListener('click', () => {
     hmenu.classList.contains('open') ? closeMenu() : openMenu();
 });
 
+// Close on any link click
 hmenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
 
+// Close on outside click
 document.addEventListener('click', (e) => {
     if (hmenu.classList.contains('open') && !hmenu.contains(e.target) && !hbtn.contains(e.target)) {
         closeMenu();
     }
 });
 
+// Close on scroll
 window.addEventListener('scroll', () => {
     if (hmenu.classList.contains('open')) closeMenu();
 }, { passive: true });
 </script>
-
-<script>
-(function(){
-  var pill = document.getElementById('wlBillingToggle');
-  if(!pill) return;
-  var lblM = document.getElementById('wlLblMonthly');
-  var lblY = document.getElementById('wlLblYearly');
-  var prices = { pro:[8.99, 7.49], max:[18.99, 15.83] };
-  function fmt(n){ return '€'+n.toFixed(2).replace('.',','); }
-  function update(yearly){
-    pill.classList.toggle('yearly',yearly);
-    lblM.classList.toggle('active',!yearly);
-    lblY.classList.toggle('active',yearly);
-    document.getElementById('wlPricePro').textContent = fmt(yearly?prices.pro[1]:prices.pro[0])+(yearly?'/mo*':'/mo');
-    document.getElementById('wlPriceMax').textContent = fmt(yearly?prices.max[1]:prices.max[0])+(yearly?'/mo*':'/mo');
-    var note = document.getElementById('wlYearlyNote');
-    if(note) note.style.display = yearly?'block':'none';
-    var tPro = document.getElementById('wlTotalPro'); if(tPro) tPro.style.display = yearly?'block':'none';
-    var tMax = document.getElementById('wlTotalMax'); if(tMax) tMax.style.display = yearly?'block':'none';
-    var rPro = document.querySelector('input[value="pro"]');
-    var rMax = document.querySelector('input[value="max"]');
-    if(rPro) rPro.parentElement.querySelector('span').textContent = yearly
-      ? 'Pro '+fmt(prices.pro[1])+'/mo (jährlich, –15%)'
-      : 'Pro €8,99/mo';
-    if(rMax) rMax.parentElement.querySelector('span').textContent = yearly
-      ? 'Max '+fmt(prices.max[1])+'/mo (jährlich, –20%)'
-      : 'Max €18,99/mo';
-  }
-  pill.addEventListener('click',function(){ update(!pill.classList.contains('yearly')); });
-  update(false);
-})();
-</script>
-
 <script>
 (function(){
   var user=null;try{user=JSON.parse(localStorage.getItem('aura_user'));}catch(e){}
@@ -374,7 +304,7 @@ window.addEventListener('scroll', () => {
   if(btn&&user&&user.email){
     var i=user.name?user.name.split(' ').map(function(n){return n[0];}).join('').toUpperCase().slice(0,2):user.email[0].toUpperCase();
     var a=document.createElement('a');
-    a.href='profile.html';a.className='nav-avatar';a.title=user.name||user.email;a.textContent=i;
+    a.href='profile_en.html';a.className='nav-avatar';a.title=user.name||user.email;a.textContent=i;
     btn.parentNode.replaceChild(a,btn);
   }
 })();

@@ -185,11 +185,15 @@
         .mobile-menu .lang-switch{border:none;padding:12px 0;letter-spacing:2px;}
         @media(max-width:768px){
             .hamburger{display:flex;}
-            nav a:not(.btn-primary):not(.lang-switch){display:none;}
+            nav a:not(.btn-primary):not(.lang-switch):not(.btn-login){display:none;}
             nav .lang-switch{display:none;}
             nav .btn-primary{display:none;}
         }
-</style>
+
+        .btn-login{font-size:14px;color:var(--text-secondary);text-decoration:none;border:1px solid var(--border);border-radius:8px;padding:8px 16px;transition:border-color 0.2s,color 0.2s;}
+        .btn-login:hover{border-color:var(--green);color:var(--green);}
+        .nav-avatar{width:34px;height:34px;border-radius:50%;background:var(--green-dim);border:1.5px solid var(--green);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:var(--green);text-decoration:none;font-family:'DM Mono',monospace;cursor:pointer;}
+        </style>
 </head>
 <body>
 <header><div class="container"><div class="inner">
@@ -198,8 +202,9 @@
             <a href="index.html#mission">Mission</a>
             <a href="features.html">Features</a>
             <a href="index.html#pricing">Pricing</a>
-            <a href="openrouter.html">OpenRouter</a>
+            <a href="byok.html">BYOK</a>
             <a href="features_en.html" class="lang-switch">EN</a>
+            <a href="login.html" class="btn-login" id="navLoginBtn">Anmelden</a>
             <a href="waitlist.html" class="btn-primary">Waitlist beitreten</a>
         </nav>
         <button class="hamburger" id="hamburger" aria-label="Menu">
@@ -210,7 +215,8 @@
         <a href="index.html#mission">Mission</a>
         <a href="features.html">Features</a>
         <a href="index.html#pricing">Pricing</a>
-        <a href="openrouter.html">OpenRouter</a>
+        <a href="byok.html">BYOK</a>
+        <a href="login.html">Anmelden</a>
         <a href="features_en.html" class="lang-switch">EN</a>
         <a href="waitlist.html" class="btn-primary">Waitlist beitreten</a>
     </div>
@@ -325,5 +331,18 @@ window.addEventListener('scroll', () => {
     if (hmenu.classList.contains('open')) closeMenu();
 }, { passive: true });
 </script>
+<script>
+(function(){
+  var user=null;try{user=JSON.parse(localStorage.getItem('aura_user'));}catch(e){}
+  var btn=document.getElementById('navLoginBtn');
+  if(btn&&user&&user.email){
+    var i=user.name?user.name.split(' ').map(function(n){return n[0];}).join('').toUpperCase().slice(0,2):user.email[0].toUpperCase();
+    var a=document.createElement('a');
+    a.href='profile.html';a.className='nav-avatar';a.title=user.name||user.email;a.textContent=i;
+    btn.parentNode.replaceChild(a,btn);
+  }
+})();
+</script>
+
 </body>
 </html>
