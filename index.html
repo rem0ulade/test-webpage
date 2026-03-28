@@ -358,7 +358,9 @@ window.addEventListener('scroll', () => {
   var dots = document.querySelectorAll('.app-preview-dots .dot');
   if(!preview || !dots.length || window.innerWidth >= 768) return;
   preview.addEventListener('scroll', function(){
-    var idx = Math.round(preview.scrollLeft / preview.offsetWidth);
+    var frames = preview.querySelectorAll(".app-preview-frame");
+    var fw = frames[0] ? frames[0].offsetWidth + 12 : preview.offsetWidth;
+    var idx = Math.round(preview.scrollLeft / fw);
     dots.forEach(function(d,i){ d.classList.toggle('active', i === idx); });
   }, {passive:true});
 })();
