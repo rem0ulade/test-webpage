@@ -83,6 +83,7 @@
       <div class="app-preview-frame"><img src="assets/screenshots/app-personas.png" alt="Aura Personas" loading="lazy"><div class="app-preview-label">Personas</div></div>
       <div class="app-preview-frame"><img src="assets/screenshots/app-agent.png" alt="Aura Agent" loading="lazy"><div class="app-preview-label">Agent</div></div>
     </div>
+    <div class="app-preview-dots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span></div>
   </div></section>
 
   <section id="mission" class="mission fade-in"><div class="container"><div class="mission-inner">
@@ -350,6 +351,16 @@ window.addEventListener('scroll', () => {
   }
   pill.addEventListener('click', function(){ update(!pill.classList.contains('yearly')); });
   update(false);
+})();
+// App preview carousel dots
+(function(){
+  var preview = document.querySelector('.app-preview');
+  var dots = document.querySelectorAll('.app-preview-dots .dot');
+  if(!preview || !dots.length || window.innerWidth >= 768) return;
+  preview.addEventListener('scroll', function(){
+    var idx = Math.round(preview.scrollLeft / preview.offsetWidth);
+    dots.forEach(function(d,i){ d.classList.toggle('active', i === idx); });
+  }, {passive:true});
 })();
 </script>
 
